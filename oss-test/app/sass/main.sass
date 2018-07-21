@@ -1,0 +1,390 @@
+$font: 'Roboto Slab', serif
+$textColor: #35363a
+$accent: #D08349
+@mixin respondTo($_media)
+  @if $_media == small-phones
+   @media all and (max-width: 479px)
+      @content
+
+  @else if $_media == phones
+    @media all and (max-width: 767px)
+      @content
+
+  @else if $_media == tablets
+    @media all and (max-width: 991px)
+      @content
+
+  @else if $_media == sm
+    @media all and (max-width: 1199px)
+      @content
+
+  //@else if $_media == lg-desktops
+  //  @media all and (min-width: 1200px) and (max-width: 1440px)
+  //    @content
+  //
+  //@else if $_media == xlg-desktops
+  //  @media all and (min-width: 1441px) and (max-width: 1920px)
+  //    @content
+
+::selection
+  //background-color: $accent
+  color: #fff
+
+head, body, .wrapper
+  height: 100%
+
+
+body
+  font-size: 12px
+  color: $textColor
+  min-width: 320px
+  position: relative
+  line-height: 1.65
+  font-weight: 400
+  font-family: $font
+  overflow-x: hidden
+
+  input, textarea
+    outline: none
+    &:focus:required:invalid
+      border-color: red
+    &:required:valid
+      border-color: green
+
+section, header
+  position: relative
+  background-size: cover
+  background-position: center
+  margin-bottom: 1.2%
+
+.padSite
+  padding: 12px
+  &_footer
+    padding: 22px
+
+.shadow
+   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.75)
+  
+.wrapper
+  display: flex
+  flex-direction: column
+  -webkit-background-size: cover
+  background: url(../img/Background.jpg) top  no-repeat
+  background-size: cover
+
+  padding: 0 4.5% 8.6%
+
+
+.content
+  flex: 1
+  width: 100%
+  margin: 0 auto
+
+.header
+  margin-bottom: 15px
+  &__logoWrap
+    text-align: center
+  &__logo
+    font-size: 5.53125rem
+    color: #545454
+    text-transform: capitalize
+    text-decoration: none
+    display: inline-block
+    transition: transform .5s ease
+    &:hover
+      transform: scale(1.1)
+    @include respondTo(phones)
+      font-size: 3rem
+.nav
+  position: relative
+  display: flex
+  align-items: center
+  justify-content: space-between
+  background: #fff
+  height: 66px
+  @include respondTo(tablets)
+    &:before
+      content: 'Menu'
+      font-size: 2.125rem
+      position: absolute
+      top: 20%
+      right: 12%
+  @include respondTo(phones)
+    height: 33px
+    &:before
+      top: 4%
+  @include respondTo(small-phones)
+    &:before
+      top: 0
+      right: 18%
+@include respondTo(tablets)
+  .navigationWrap
+    height: 100vh
+    width: 100%
+    box-shadow: 0 4px 4px 2px rgba(0, 0, 0, 0.75)
+    position: fixed
+    top: -120vh
+    left: 0
+    z-index: 5
+    background: #fff
+    transition: top .8s ease-in-out
+    &_open
+      top: 0
+
+.navigation
+  display: flex
+  list-style: none
+  font-size: 1.125rem
+  text-transform: capitalize
+  padding: 0
+  margin: 0
+  transition: opacity 1.2s ease-in-out
+  @include respondTo(tablets)
+    flex-direction: column
+    text-align: center
+    justify-content: center
+    height: 100%
+    opacity: 0
+    &_open
+      opacity: 1
+
+
+  &__link
+    color: #5b5b5b
+    text-decoration: none
+    padding: 9px 36px
+    display: inline-block
+    transition: color .5s ease-in-out
+    &:hover
+      color: $accent
+    &_active
+      color: $accent
+
+.wrapBurger
+  position: absolute
+  right: 12px
+  z-index: 6
+  &_open
+    position: fixed
+    right: 40px
+
+
+.burger
+  width: 65px
+  height: 60px
+  position: relative
+  transition: .1s
+  cursor: pointer
+  display: none
+  z-index: 5
+  span
+    background-color: #35363a
+    position: absolute
+    border-radius: 2px
+    transition: .3s cubic-bezier(.8, .5, .2, 1.4)
+    width: 100%
+    height: 8px
+    &:nth-child(1)
+      top: 4px
+      left: 0
+    &:nth-child(2)
+      top: 26px
+      left: 0
+    &:nth-child(3)
+      bottom: 4px
+      left: 0
+  @include respondTo(tablets)
+    display: block
+
+
+  @include respondTo(phones)
+    width: 35px
+    height: 30px
+    span
+      height: 4px
+      border-radius: 2px
+      &:nth-child(1)
+        top: 0
+        left: 0
+      &:nth-child(2)
+        top: 13px
+        left: 0
+      &:nth-child(3)
+        bottom: 0
+        left: 0
+.clickBurger
+  span
+    &:nth-child(1)
+      transform: rotate(45deg) scaleX(0.8)
+      top: 26px
+      left: -16px
+    &:nth-child(2)
+      transform: scale(0)
+      transition-duration: 50ms
+    &:nth-child(3)
+      transform: rotate(-45deg) scaleX(0.8)
+      top: 26px
+      left: 14px
+    @include respondTo(phones)
+      &:nth-child(1)
+        transform: rotate(45deg) scaleX(0.7)
+        top: 13px
+        left: -8px
+      &:nth-child(2)
+        transform: scale(0)
+        transition-duration: 50ms
+      &:nth-child(3)
+        transform: rotate(-45deg) scaleX(0.7)
+        top: 13px
+        left: 7px
+.search
+  border: 1px solid rgba(205, 205, 205, 38)
+  background-color:  #fafafa
+  position: relative
+  font-size: 1.125rem
+  &__item
+    padding: 10px 16px
+    border: none
+    color: #5b5b5b
+    font-style: italic
+    &::placeholder
+         color: #dcdcdc
+  &__logo
+    position: absolute
+    background-image: url(../img/search.png)
+    width: 22px
+    height: 20px
+    top: 10px
+    right: 16px
+  @include respondTo(tablets)
+    display: none
+.slider
+  background: #fff
+  height: 100%
+  @include respondTo(phones)
+    display: none
+.slick
+  position: relative
+  width: 100%
+
+  &__item
+    height: 400px
+    background:  top center no-repeat
+    background-size: cover
+
+    width: 100%
+    &:first-child
+      background-image: url(../img/slider1.jpg)
+    &:nth-child(2)
+      background-image: url(../img/slider2.jpg)
+    &:nth-child(3)
+      background-image: url(../img/slider3.jpg)
+      background-position: center bottom
+      
+  &__img
+    display: block
+    width: 100%
+
+.blog
+  display: flex
+  justify-content: space-between
+  align-items: center
+  flex-wrap: wrap
+.article
+  background: #fff
+  font-size: .75rem
+  width: 22.5%
+  margin-bottom: 1%
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.75)
+  &__img
+    width: 100%
+    height: 255px
+    margin-bottom: 1.5%
+    background-size: cover
+
+  @include respondTo(sm)
+    width: 21%
+    &__img
+      height: 205px
+  @include respondTo(tablets)
+    width: 45%
+    margin-bottom: 3%
+    &__img
+      height: 255px
+  @include respondTo(phones)
+    width: 100%
+    margin-bottom: 4%
+    &__img
+      height: 355px
+  @include respondTo(small-phones)
+    &__img
+      height: 205px
+
+  &__text
+    font-family: 'Arial', sans-serif
+    text-align: justify
+    color: #333433
+    text-indent: 20px
+    
+  &__link
+    color: #000
+    text-decoration: underline
+    text-align: right
+    display: block
+    transition: color .8s ease-in-out
+    &:hover
+      color: $accent
+.welcome
+  &__item
+    width: calc(100% - 24px)
+    display: flex
+
+    justify-content: space-between
+    background: #fff
+    @include respondTo(tablets)
+      flex-direction: column
+      flex-wrap: wrap
+
+  &__img
+    width: 23%
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+    align-items: stretch
+    @include respondTo(tablets)
+      width: 100%
+    img
+      width: 48%
+      height: auto
+      margin-bottom: 2%
+      @include respondTo(tablets)
+        height: auto
+        width: 24%
+      @include respondTo(phones)
+        width: 48%
+
+  &__article
+
+    width: 74%
+    @include respondTo(tablets)
+      width: 100%
+.footer
+  margin: 0 auto
+  width: calc(100% - 44px)
+  background: #fff
+  display: flex
+  &__text
+    color:  #545454
+    font-size: 0.875rem
+    margin-right: 12px
+    text-align: justify
+  &__link
+    color:  #545454
+    text-decoration: none
+    text-align: right
+    &:hover
+      color: $accent
+  @include respondTo(phones)
+    flex-direction: column
+
+

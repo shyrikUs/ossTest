@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OSS Form</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css"/>
+    <style>
+        #testForm {
+            margin: 0 auto;
+            text-align: center;
+        }
+        form div {
+            position: relative;
+        }
+        form div > input {
+            margin-bottom: 40px;
+        }
+
+        label {
+            width: 200px;
+        }
+        label.error {
+            color: red;
+        }
+        input {
+            border : 1px solid #ccc;
+        }
+
+        .content {
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+        .errorStyle{
+            text-align: center;
+            color: red;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+        }
+        .success {
+            border-color: green;
+        }
+        .error {
+            border-color: red;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="content">
+                <form action="#" id="testForm">
+                    <div>
+                        <label for="name">First name</label>
+                        <input  id="name" placeholder="тільки букви без пробілів"/>
+                        <div class="errorStyle" id="nameError">поле має містити тільки букви</div>
+                    </div>
+
+                    <div>
+                        <label for="phone">Phone number:</label>
+                        <input id="phone"  placeholder="+38(000)000-0000"/>
+                        <div class="errorStyle" id="phoneError">в форматі +38(000)000-0000</div>
+                    </div>
+
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id="email"  placeholder="mymail@gmail.com"/>
+                        <div class="errorStyle" id="emailError">наприклад, mymail@gmail.com</div>
+                    </div>
+
+                    <button id="send" onclick="myForm()">Send</button>
+                    <div id="result"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    'use strict';
+
+    let name = document.getElementById('name'),
+        phone = document.getElementById('phone'),
+        result = document.getElementById('result'),
+        email = document.getElementById('email');
+    result.innerText = '';
+    function myForm () {
+        let formValue = {
+            nameField: {
+                global: name,
+                value: name.value,
+                regExp: /^[a-zA-Zа-яА-ЯёЁ]+$/,
+                error: 'nameError'
+            },
+            phoneField: {
+                global: phone,
+                value: phone.value,
+                regExp: /^\+38\(\d{3}\)\d{3}-\d{4}$/,
+                error: 'phoneError'
+            },
+            emailField: {
+                global: email,
+                value: email.value,
+                regExp: /^([\w.-])+@([\w-])+\.([a-zA-Z]{2,4})$/,
+                error: 'emailError'
+            }
+        };
+        let counter = 0;
+        for (let key in formValue) {
+            check(formValue[key]);
+            if (check(formValue[key]) === 'success') {
+                counter++;
+            }
+        }
+        showRes(counter);
+
+    }
+    function check(field) {
+        field.global.classList.remove('error');
+        field.global.classList.remove('success');
+        let displayVal, newClass;
+        if (!field.regExp.test(field.value)) {
+            newClass = 'error';
+        } else {
+            newClass = 'success';
+        }
+        if (newClass === 'error') {
+            displayVal = 'block'
+        } else {
+            displayVal = 'none'
+        }
+        field.global.classList.add(newClass);
+        document.getElementById(field.error).style.display = displayVal;
+        return newClass;
+    }
+    function showRes(counter) {
+        result.innerText = '';
+        let textRes;
+        if (count < 3) {
+            textRes = "Помилка при заповненні"
+        }
+        else {
+            textRes = "Данні успішно відправлені"
+        }
+        result.innerText = textRes;
+    }
+
+
+
+</script>
+
+</body>
+</html>

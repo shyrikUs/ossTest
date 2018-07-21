@@ -1,0 +1,37 @@
+{
+  "Article": [
+    {
+      "data": 1,
+      "img": "../img/1.jpg",
+      "desc": "foto1",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda consectetur debitis est et maxime omnis placeat quaerat quasi! Consectetur consequuntur cumque doloribus ex exercitationem laboriosam omnis praesentium reprehenderit soluta unde!",
+      "link": "#"
+    },
+    {
+      "data": 2,
+      "img": "../img/2.jpg",
+      "desc": "foto2",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda consectetur debitis est et maxime omnis placeat quaerat quasi! Consectetur consequuntur cumque doloribus ex exercitationem laboriosam omnis praesentium reprehenderit soluta unde!",
+      "link": "#"
+    },
+    {
+      "data": 3,
+      "img": "../img/3.jpg",
+      "desc": "foto3",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda consectetur debitis est et maxime omnis placeat quaerat quasi! Consectetur consequuntur cumque doloribus ex exercitationem laboriosam omnis praesentium reprehenderit soluta unde!",
+      "link": "#"
+    },
+    {
+      "data": 4,
+      "img": "../img/4.jpg",
+      "desc": "foto4",
+      "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda consectetur debitis est et maxime omnis placeat quaerat quasi! Consectetur consequuntur cumque doloribus ex exercitationem laboriosam omnis praesentium reprehenderit soluta unde!",
+      "link": "#"
+    }
+  ],
+  "Slider": [
+    {"srd": "../img/slider1.jpg"},
+    {"srd": "../img/slider2.jpg"},
+    {"srd": "../img/slider3.jpg"}
+  ]
+}
